@@ -1,0 +1,15 @@
+output table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .output th,
+  .output td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .output th {
+    background-color: grey;
+  }
