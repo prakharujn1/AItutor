@@ -1,8 +1,11 @@
 import React from "react";
 import GLBViewer from "../components/Model";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+  const navigate = useNavigate();  
   return (
     <div className="min-h-screen bg-gradient-to-r from-purple-900 to-black text-white">
       <Navbar />
@@ -32,10 +35,12 @@ const Home = () => {
             <span className="text-green-500">Learning</span>
           </h2>
           <p className="mt-4 text-white text-lg md:text-xl font-medium">
-            Enhance learning with our AI-based LMS, Tutor.AI, offering personalised education
+            Enhance learning with our AI-based LMS, Edgility, offering personalised education
             tailored to individual needs for optimal learning outcomes.
           </p>
-          <button className="mt-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg text-white font-semibold">
+          <button
+             onClick={() => navigate("/chatbot")}
+           className="mt-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg text-white font-semibold hover:cursor-pointer">
             Explore
           </button>
 

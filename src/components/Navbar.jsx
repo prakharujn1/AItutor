@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X } from "lucide-react";
 
+
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
+  
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
@@ -14,10 +16,13 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
 
           {/* Logo and Title */}
+          <Link to="/">
           <div className="flex items-center gap-2">
             <img src="/AGILITYAI.png" alt="AgilityAI" className="w-12 h-12 object-contain rounded-3xl" />
             <h1 className="text-2xl font-bold text-gray-700">Edgility</h1>
           </div>
+          </Link>
+          
 
           {/* Navigation Links */}
           <ul className="hidden lg:flex ml-14 space-x-10 text-[#F5FCE1] font-medium text-lg">

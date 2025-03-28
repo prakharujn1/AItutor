@@ -61,6 +61,8 @@ const Chatbot = () => {
         message: question,
         username,
         chat_history: scienceHistory,
+      }, {
+        headers: { "Content-Type": "application/json" }
       })
 
       console.log(response.data);
@@ -162,6 +164,7 @@ const Chatbot = () => {
       if (data) {
         subject === "Mathematics" ? setResponse(data.response) : setResponse(data.answer);
         subject === "Mathematics" ? setMathHistory(data.chat_history) : setScienceHistory(data.chat_history);
+        setProgress(data.progress);
       }
       setQuestion('');
     } catch (error) {
@@ -174,49 +177,49 @@ const Chatbot = () => {
 
   const synth = window.speechSynthesis;
   const [voices, setVoices] = useState([]);
-  
+
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = synth.getVoices();
       setVoices(availableVoices);
     };
-  
+
     // Load voices initially
     loadVoices();
-  
+
     // Ensure voices are available on some browsers (e.g., Chrome)
     if (synth.onvoiceschanged !== undefined) {
       synth.onvoiceschanged = loadVoices;
     }
   }, []);
-  
+
   const speakHandler = () => {
     if (response.trim() && !isSpeaking) {
       const selectedVoice =
         voices.find((voice) => voice.name.includes("India") || voice.lang.includes("en-IN")) ||
         voices[0]; // Fallback to first available voice
-  
+
       const sanitizedResponse = response.replace(/[*_,`|\-]/g, ""); // Remove unwanted characters
-  
+
       const utterance = new SpeechSynthesisUtterance(sanitizedResponse);
       utterance.rate = rate;
       utterance.voice = selectedVoice;
       utterance.onend = () => setIsSpeaking(false);
-  
+
       synth.speak(utterance);
       setIsSpeaking(true);
     }
   };
-  
+
   const stopSpeakingHandler = () => {
     synth.cancel();
     setIsSpeaking(false);
   };
-  
+
   useEffect(() => {
     stopSpeakingHandler();
   }, [rate]);
-  
+
   useEffect(() => {
     const audio = new Audio("/audio.mp3");
     audio.play().catch(err => console.log("Autoplay blocked:", err));
@@ -240,7 +243,7 @@ const Chatbot = () => {
           <option>Class 12</option> */}
         </select>
         <select
-          className="p-2 rounded bg-gray-700 text-white w-40 sm:w-48 z-10"
+          className="p-2 rounded bg-gray-700 text-white w-40 sm:w-48 z-10 border-2 border-blue-400 shadow-lg animate-pulse"
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         >
@@ -365,6 +368,14 @@ const Chatbot = () => {
               placeholder="Type or speak your question..."
             />
             <div className="flex flex-wrap justify-center gap-4 mt-4 w-full max-w-md">
+              <select
+                className="w-full bg-gray-500  bg-opacity-10 text-white text-center py-2 text-lg rounded-lg transition-all shadow-md hover:shadow-lg cursor-pointer"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+              >
+                <option>Mathematics</option>
+                <option>Science</option>
+              </select>
               <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 text-lg rounded-lg transition-all shadow-md hover:shadow-lg" onClick={submitHandler}>
                 Get response
               </button>

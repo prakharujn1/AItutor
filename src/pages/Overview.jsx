@@ -17,13 +17,13 @@ const Overview = () => {
           {/* Right Text Content */}
           <div className="md:w-1/2 flex-1 max-w-md text-center md:text-left">
             <h2 className="text-3xl font-bold">
-              Redefining Education with <span className="text-yellow-300">Tutor.AI</span>
+              Redefining Education with <span className="text-yellow-300">Edgility</span>
             </h2>
             <p className="mt-4 text-black font-semibold">
-              Tutor.AI, our AI-based LMS, is reshaping teaching and learning. By leveraging AI, it streamlines course creation, delivers personalized learning resources, and tracks student progress.
+            Edgility, our AI-based LMS, is reshaping teaching and learning. By leveraging AI, it streamlines course creation, delivers personalized learning resources, and tracks student progress.
             </p>
             <p className="mt-2 text-black font-semibold">
-              Tutor.AI represents the future of education, harnessing AI solutions to offer flexible learning opportunities. With MeraTutor.AI, students can access education anytime, anywhere.
+            Edgility represents the future of education, harnessing AI solutions to offer flexible learning opportunities. With Edgility, students can access education anytime, anywhere.
             </p>
           </div>
         </div>
